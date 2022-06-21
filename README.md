@@ -1,7 +1,7 @@
 # Vraag Antwoord Register
 [![Automated Testing](https://github.com/Huwelijksplanner/VraagAntwoordRegister/actions/workflows/tests.yml/badge.svg)](https://github.com/Huwelijksplanner/VraagAntwoordRegister/actions/workflows/tests.yml)
 
-The vraag antwoord registers provided an API for FAQ’s conform the https://schema.org/Question and https://schema.org/Answer model. It aims to provide an FAQ system comparable to https://stackoverflow.com/ and integratable  with google search. 
+The vraag antwoord registers provided an API for FAQ’s conform the [https://schema.org/Question](https://schema.org/Question) and [https://schema.org/Answer](https://schema.org/Answer) model. It aims to provide an FAQ system comparable to [https://stackoverflow.com/](https://stackoverflow.com/) and integratable  with google search. 
 
 - [API Defintion (redocly)](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/Huwelijksplanner/VraagAntwoordRegister/main/OAS.yaml&nocors)
 - [API Defintion (file)](https://github.com/Huwelijksplanner/VraagAntwoordRegister/blob/main/OAS.yaml)
