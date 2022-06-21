@@ -1,78 +1,18 @@
-# This is an workflow to autmaticly tests the validity of your OAS definitons and the Common Gateway's abillity to provide an API for them
+ # This is an workflow to autmaticly tests the validity of your OAS definitons and the Common Gateway's abillity to provide an API for them
+ name: Automated Testing
 
-name: Automated Testing
+ # Controls when the workflow will run
+ on:
+   # Triggers the workflow on push or pull request events but only for the "main" branch
+   push:
+     branches: [ "main" ]
+   pull_request:
+     branches: [ "main" ] 
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+   # Allows you to run this workflow manually from the Actions tab
+   workflow_dispatch:
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-  # Allows this workflow to be used in other repositories
-  workflow_call:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: Pull common-gateway images
-        run: docker-compose pull
-
-      - name: Run the docker image
-        run: docker-compose up -d
-
-      - name: Taking some sleep (for containers to come up)
-        run: sleep 45
-
-      - name: Check if all containers are running
-        run: docker ps
-
-      # Create collection and configure gateway
-      - name: Create collection and configure gateway with oas
-        run: "docker-compose exec -T php bin/console app:load-publiccodes"
-
-      # Install Node.js environment
-      - name: Set up node
-        uses: actions/setup-node@v1
-        with:
-            node-version: '12.x'
-      
-      # Install openapi-to-postman
-      - name: Install openapi-to-postman
-        run: | 
-         npm i -g openapi-to-postmanv2
-      
-      # Create Postman collection
-      - name: Create Postman collection
-        run: openapi2postmanv2 -s OAS.yaml -o tests/postman-collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
-
-      # Install newman
-      - name: Install newman
-        run: | 
-         npm install -g newman
-         npm install -g newman-reporter-htmlextra
-      
-      # Run POSTMAN collection and output the file as html
-      - name: Run POSTMAN collection
-        run: |
-         newman run ./tests/postman-collection.json -r htmlextra --reporter-htmlextra-export tests/results/htmlreport.html --reporter-htmlextra-darkTheme  > tests/results/runreport1.html
-         
-      # Upload test results
-      - name: Output the run Details
-        uses: actions/upload-artifact@v2
-        with: 
-          name: RunReports
-          path: tests/results
+ # Uses the default testing workflow from https://github.com/CommonGateway/PetStoreAPI
+ jobs:
+   call-testing-workflow-from-default-pet-store-api:
+     uses: CommonGateway/PetStoreAPI/.github/workflows/tests.yml@main
