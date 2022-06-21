@@ -1,14 +1,12 @@
 # Vraag Antwoord Register
 [![Automated Testing](https://github.com/Huwelijksplanner/VraagAntwoordRegister/actions/workflows/tests.yml/badge.svg)](https://github.com/Huwelijksplanner/VraagAntwoordRegister/actions/workflows/tests.yml)
 
-A example implementation of a Common Gateway configuration for generating an API. This example has been specifically setup to use as a temple, read more about that under [Using this repositry as a temple](#Using this repositry as a temple).
+The vraag antwoord registers provided an API for FAQ’s conform the https://schema.org/Question and https://schema.org/Answer model. It aims to provide an FAQ system comparable to https://stackoverflow.com/ and integratable  with google search. 
 
 - [API Defintion (redocly)](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/Huwelijksplanner/VraagAntwoordRegister/main/OAS.yaml&nocors)
 - [API Defintion (file)](https://github.com/Huwelijksplanner/VraagAntwoordRegister/blob/main/OAS.yaml)
 - [Publiccode](https://github.com/Huwelijksplanner/VraagAntwoordRegister/blob/main/publiccode.yaml)
 - [Stoplight.io](https://conduction.stoplight.io/docs/huwelijksplanner/8oln1dnmpzx93-vraag-antwoord-register)
-
-## About Vraag Antwoord Register
 
 ## Running the API locally
 
